@@ -1,0 +1,73 @@
+/* One gutter and one image baseline per row; native film proportions remain intact. */
+:root{--film-gap:28px}
+.project-index{column-gap:var(--film-gap)}
+.native-row{grid-column:1/-1;display:flex;align-items:flex-start;justify-content:center;gap:var(--film-gap);min-width:0}
+.native-row>.single-entry,.native-row>.project-entry,.native-row>.film-band{flex:none;grid-column:auto!important;width:var(--card-width);margin:0!important;align-self:flex-start!important;min-width:0}
+.native-row .index-preview{height:var(--row-height)!important;aspect-ratio:auto!important;justify-content:flex-start!important;gap:var(--film-gap)!important;border-radius:0;overflow:hidden}
+.native-row .index-preview video{height:100%!important;width:var(--video-width)!important;max-height:none!important;max-width:none!important;object-fit:contain;border-radius:12px;flex:none}
+.native-row .index-single,.native-row .project-entry>summary{row-gap:16px}
+.native-row .index-name{align-self:start}
+.native-row .project-entry>summary .index-end{align-self:start}
+#nike-popups.film-band .band-heading{height:32px;margin:0 0 20px;max-width:none}
+.nike-row>[data-film="ocean"]{padding-top:52px}
+#nike-popups.film-band .series-films,.project-entry .series-films{gap:28px var(--film-gap);justify-content:center;align-items:flex-start;flex-wrap:wrap}
+#nike-popups.film-band .series-films .project,.project-entry .series-films .project{width:var(--tile-width)!important;max-width:none;flex:none}
+#nike-popups.film-band .series-films .film,.project-entry .series-films .film{width:100%;height:var(--tile-height);border-radius:12px}
+#nike-popups.film-band .series-films video,.project-entry .series-films video{width:100%;height:100%;max-height:none;max-width:none;object-fit:contain;aspect-ratio:auto}
+.native-row .index-preview video+video{max-width:none}
+/* A hover must not lift one film off the shared baseline. */
+.index-single:hover .index-preview,.project-entry>summary:hover .index-preview{transform:none}
+@media(max-width:900px){:root{--film-gap:20px}}
+@media(max-width:600px){
+ :root{--film-gap:16px}
+ .native-row{flex-direction:column;align-items:center;gap:32px}
+ .native-row>.single-entry,.native-row>.project-entry,.native-row>.film-band{width:var(--card-width);align-self:center!important}
+ .nike-row>[data-film="ocean"]{padding-top:0}
+ #nike-popups.film-band .series-films{display:flex;gap:24px var(--film-gap)}
+ .native-row .index-single,.native-row .project-entry>summary{row-gap:12px}
+ .native-row .index-end{max-width:none}
+ .native-row .project-name{font-size:18px}
+}
+
+.series-films:has(>.film-line){display:flex!important;flex-direction:column;gap:28px!important}
+.film-line{display:flex;width:100%;gap:var(--film-gap);justify-content:center;align-items:flex-start}
+
+/* All primary rows share the same left and right page guides. */
+#work>.project-index>[data-film="sk-ii-main"]{grid-column:1/-1;margin:0;width:100%}
+#work>.project-index>[data-film="sk-ii-main"] .index-preview{width:100%;aspect-ratio:16/9}
+#work>.project-index>[data-film="sk-ii-main"] .index-preview video{display:block;width:100%;height:100%;max-height:none;object-fit:contain}
+
+/* Phone play affordances live on the image, inside the existing full-card button. */
+.mobile-play{display:none}
+.play-label{display:inline-flex;align-items:center;gap:7px}
+.play-label svg{display:block;width:8px;height:10px;fill:currentColor}
+@media(max-width:600px){
+ .index-single .index-preview{position:relative;isolation:isolate}
+ .index-single .index-preview>.mobile-play,.series-films .film>.play-hint{position:absolute;z-index:2;right:8px;bottom:8px;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;padding:0 12px;border:1px solid #ffffff65;border-radius:24px;background:#20231fe6;color:white;opacity:1;filter:none;pointer-events:none;white-space:nowrap}
+ .index-single .index-preview>.mobile-play svg,.series-films .film>.play-hint svg{display:block;width:9px;height:11px;fill:currentColor;flex:none}
+ .index-single .index-preview>.mobile-play>span,.series-films .film>.play-hint>span{font:500 10px/1 Arial,Helvetica,sans-serif;letter-spacing:.045em}
+ .project-index>.single-entry .index-end,.native-row>.single-entry .index-end{display:none}
+ #ai .native-row>.single-entry .index-end{display:flex;grid-column:1/-1;grid-row:3;align-items:flex-start;min-height:0}
+ #ai .native-row>.single-entry .index-end>.play-label{display:none}
+ #ai .native-row>.single-entry .index-end>span:first-child{font-size:9px}
+ .project-index>.single-entry .index-name,.native-row>.single-entry .index-name{grid-column:1/-1}
+ #work>.project-index>[data-film="vivo"] .index-name{min-height:0}
+ .archive-list .index-preview>.mobile-play{display:none}
+ .archive-list .play-label{min-width:44px;min-height:44px;justify-content:center;font-size:10px}
+ .opening-media .hero-hit{align-items:center;justify-content:center;padding:0 0 28px}
+ .opening-media .hero-hit .play-hint{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:0 16px;border:1px solid #ffffff80;background:#20231fe6;color:#fff;border-radius:28px;opacity:1;filter:none;pointer-events:none}
+ .opening-media .hero-hit .play-hint>span{font:500 11px/1 Arial,Helvetica,sans-serif;letter-spacing:.045em}
+ .opening-media .hero-hit .play-hint svg{width:10px;height:12px;fill:currentColor}
+ .opening-media .hero-hit:hover .play-hint>span{text-decoration:none}
+ #film-dialog .cinema-top button,#film-dialog .cinema-controls button,#film-dialog #series-nav button{min-height:44px;min-width:44px;font-size:10px}
+ #film-dialog .cinema-controls{gap:8px}
+ #film-dialog .cinema-controls #film-fullscreen{font-size:20px}
+ #film-dialog .cinema-frame.is-short .cinema-title{top:58px}
+ #film-dialog .cinema-frame.is-short #series-nav{top:72px;gap:0 12px}
+ .film,.index-single,.hero-hit{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+ .hero-hit{touch-action:pan-y}
+}
+@media(max-width:600px){
+ #film-dialog .cinema-controls button,#film-dialog .cinema-top #close-film{background:#20231fbd;border:1px solid #ffffff45;border-radius:24px;color:#fff}
+ #film-dialog .cinema-controls #film-toggle,#film-dialog .cinema-top #close-film{padding:0 10px}
+}
